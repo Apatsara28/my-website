@@ -1,0 +1,25 @@
+<body style="background-color:#FFCCCC;">
+h1{
+  color: #D7BFDC;
+  }
+h2{
+color: #D7BFDC;
+}
+h3{
+color: #D7BFDC;
+}
+h4{
+color: #D7BFDC;
+}
+h5{
+color: #D7BFDC;
+}
+hr{
+/* background-color:white; */
+border-style: none;
+border-top-style: dotted;
+border-color: #FFE4E1;
+border-width: 5px;
+width: 50%
+}
+</body>
