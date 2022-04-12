@@ -1,12 +1,74 @@
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  </<head>
-<body>
-<h1 align= "center">ค่าดัชนีพรรณ NDVI จังหวัดกรุงเทพมหานคร</h1>
-<iframe src="file:///C:/%E0%B8%9B%E0%B8%B53%20%E0%B9%80%E0%B8%97%E0%B8%AD%E0%B8%A1%202/GE344/qgis2web_2022_04_11-23_13_54_767027/ndvi.html" width="600" height="450"></iframe>
-<iframe src="ndvi.html" width="600" height="450"></iframe>
-</body>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1318px;
+            height: 866px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <h1>แผนที่แสดงค่าดัชนี ndvi</h1>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[13.504010316351245,100.27755877881283],[13.990151598658205,101.01802397269704]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_CambodiaLaosThailandVietnamMalaysiaMyanmarbilingual_0');
+        map.getPane('pane_CambodiaLaosThailandVietnamMalaysiaMyanmarbilingual_0').style.zIndex = 400;
+        var layer_CambodiaLaosThailandVietnamMalaysiaMyanmarbilingual_0 = L.tileLayer('https://a.tile.osm-tools.org/osm/{z}/{x}/{y}.png', {
+            pane: 'pane_CambodiaLaosThailandVietnamMalaysiaMyanmarbilingual_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.osm-tools.org">© osm-tools.org & OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_CambodiaLaosThailandVietnamMalaysiaMyanmarbilingual_0;
+        map.addLayer(layer_CambodiaLaosThailandVietnamMalaysiaMyanmarbilingual_0);
+        map.createPane('pane_ndvi_1');
+        map.getPane('pane_ndvi_1').style.zIndex = 401;
+        var img_ndvi_1 = 'data/ndvi_1.png';
+        var img_bounds_ndvi_1 = [[13.49251590441839,100.32879166453083],[13.955507601853592,100.93865791091957]];
+        var layer_ndvi_1 = new L.imageOverlay(img_ndvi_1,
+                                              img_bounds_ndvi_1,
+                                              {pane: 'pane_ndvi_1'});
+        bounds_group.addLayer(layer_ndvi_1);
+        map.addLayer(layer_ndvi_1);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{"ndvi": layer_ndvi_1,"Cambodia, Laos, Thailand, Vietnam, Malaysia, Myanmar bilingual": layer_CambodiaLaosThailandVietnamMalaysiaMyanmarbilingual_0,}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
 </html>
